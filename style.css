@@ -1,0 +1,65 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 99vw !important;
+}
+/* div{
+    border: 2px solid black;
+} */
+#container1 .option{
+    margin-top: 30px;
+    /* border: 2px solid black; */
+    height: 50px;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+#container1 .option i{
+    margin-right: 10px;
+}
+div::-webkit-scrollbar{
+    display: none;
+}
+#container2 .tableBox td,
+#container2 .tableBox th{
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+
+}
+#container2 .tableBox td{
+    font-weight: 500;
+}
+#container2 .tableBox td button{
+    font-size: 30px;
+}
+/* #databaseBox{
+    display: none;
+} */
+#addBox{
+    display: none;
+}
+#updateBox .warning{
+    display: none;
+}
+#deleteBox .warning{
+    display: none;
+}
+#updateBox #studentForm{
+    display: none;
+}
+#updateBox #studentInfo{
+    display: none;
+}
+#updateBox{
+    display: none;
+}
+#deleteBox{
+    display: none;
+}
+#deleteBox #studentInfo{
+    display: none;
+}

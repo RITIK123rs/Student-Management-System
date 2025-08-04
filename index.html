@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="flex">
+
+    <div id="container1" class="container-fluid h-screen w-25 bg-orange-500">
+        <div class="flex mt-4">
+            <i class="fa-solid fa-users userIcon text-[70px] mt-4 text-white"></i>
+            <h1 class="font-bold text-3xl ml-8 text-white">Student Management System</h1>
+        </div>
+        <div class="text-2xl mt-5 font-bold text-white">
+            <button onclick="mainBtn(0)" id="BoxBtn0" class="option">
+                <i class="fa-solid fa-database"></i>
+                View Student DataBase
+            </button>
+            <button onclick="mainBtn(1)" id="BoxBtn1" class="option">
+                <i class="fa-solid fa-user-plus"></i>
+                Add Student Detail
+            </button>
+            <button onclick="mainBtn(2)" id="BoxBtn2" class="option">
+                <i class="fa-regular fa-pen-to-square"></i>
+                Update Student Detail
+            </button>
+            <button onclick="mainBtn(3)" id="BoxBtn3" class="option">
+                <i class="fa-solid fa-trash"></i>
+                Delete Student Detail
+            </button>
+        </div>
+    </div>
+    <div id="container2" class="container-fluid h-screen w-75 pr-0">
+        <div id="databaseBox" class="size-full">
+            <h1 class="font-bold text-5xl">Student Database</h1>
+            <p class="text-zinc-500 text-lg mt-2">Total Student: <span id="totalStudent"></span></p>
+            <div class="h-[45px] my-3">
+                <label class="font-bold">Search Student</label><br>
+                <input type="text" min="0" max="100" placeholder="Search by Roll No, Name, Father Name and Gender"
+                    class="w-4/10 border-2 mt-1 p-1" id="displaySearch">
+            </div>
+            <div class="tableBox overflow-x-scroll w-full h-[72%] mt-5 border-2 rounded-lg">
+                <table class="table  table-hover table-auto  text-nowrap">
+                    <thead class="sticky top-0 ">
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Father Name</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Math</th>
+                        <th>Science</th>
+                        <th>English</th>
+                        <th>History</th>
+                        <th>Geography</th>
+                        <th>Total</th>
+                        <th>Percentage</th>
+                        <th>Grade</th>
+                    </thead>
+                    <tbody id="studentDetail">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="addBox" class="size-full">
+            <h1 class="font-bold text-5xl">Add New Student</h1>
+            <p class="text-zinc-500 text-lg mt-2">Enter student information to add them to the database.</p>
+            <div id="studentForm " class="justify-self-center w-7/10 mt-4 h-8/10 overflow-y-scroll p-3 border-2">
+                <div class=" flex">
+                    <i class="fa-solid fa-floppy-disk text-2xl"></i>
+                    <h1 class="text-2xl font-bold ml-2">Add New Student</h1>
+                </div>
+                <p class="text-zinc-500">Fill in the student information below</p>
+
+                <div class="flex w-full justify-between mt-4">
+
+                    <div class="w-[48%]">
+                        <label class="font-bold">Roll Number</label><br>
+                        <input type="text" class="w-full border-2 mt-1 p-1" id="rollNo" required>
+                    </div>
+                    <div class="w-[48%]">
+                        <label class="font-bold">Student Name</label>
+                        <input type="text" class="w-full border-2 mt-1 p-1" id="name" required>
+                    </div>
+                </div>
+
+                <div class="flex w-full justify-between mt-4">
+
+                    <div class="w-[48%]">
+                        <label class="font-bold">Father Name</label><br>
+                        <input type="text" class="w-full border-2 mt-1 p-1" id="fName" required>
+                    </div>
+                    <div class="w-[48%]">
+                        <label class="font-bold">Date Of Birth</label>
+                        <input type="date" class="w-full border-2 mt-1 p-1" id="dob" required>
+                    </div>
+                </div>
+
+                <div class="flex w-full justify-between mt-4">
+
+                    <div class="w-[48%]">
+                        <label class="font-bold">Gender</label><br>
+                        <select class="w-full border-2 mt-1 p-1" name="" id="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="w-[48%]">
+                        <label class="font-bold">Email Address</label>
+                        <input type="email" class="w-full border-2 mt-1 p-1" id="email" required>
+                    </div>
+                </div>
+
+                <div class="w-full mt-4">
+
+                    <label class="font-bold">Address</label>
+                    <input type="type" class="w-full border-2 mt-1 p-1" id="address" required>
+
+                </div>
+
+                <div class="">
+                    <div class="flex mt-5">
+                        <i class="fa-solid fa-calculator text-2xl"></i>
+                        <h1 class="text-2xl font-bold ml-2">Subject Marks (out of 100 each)</h1>
+                    </div>
+                </div>
+                <div class="flex mt-3">
+                    <div>
+                        <label class="font-bold">Mathematics</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="math" required>
+                    </div>
+                    <div>
+                        <label class="font-bold">Science</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="science" required>
+                    </div>
+                    <div>
+                        <label class="font-bold">English</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="english" required>
+                    </div>
+                    <div>
+                        <label class="font-bold">History</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="history" required>
+                    </div>
+                    <div>
+                        <label class="font-bold">Geography</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="geography"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="flex mt-4 justify-evenly">
+                    <div>
+                        <h1 class="text-2xl font-bold">Total</h1>
+                        <h1 class="text-4xl font-bold text-orange-500 text-center"><span id="total"></span>/500</h1>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">Percent</h1>
+                        <h1 class="text-4xl font-bold text-orange-500 text-center"><span id="percent"></span>%</h1>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">Grade</h1>
+                        <h1 class="text-4xl font-bold text-orange-500 text-center"><span id="Grade"></span></h1>
+                    </div>
+                </div>
+
+                <button class="bg-orange-500 justify p-2 px-4 rounded-full text-white font-bold mt-5 float-right"
+                    onclick="addData(),displayAll(),clean(),defaultValue()">Add Student</button>
+            </div>
+        </div>
+        <div id="updateBox" class="size-full relative">
+            <h1 class="font-bold text-5xl">Update Student</h1>
+            <p class="text-zinc-500 text-lg mt-2">Search and select a student to update their information.</p>
+            <div id="searchBox" class="justify-self-center w-7/10 mt-3  border overflow-y-scroll p-3 max-h-9/10 ">
+                <div class=" flex">
+                    <i class="fa-regular fa-pen-to-square text-2xl"></i>
+                    <h1 class="text-2xl font-bold ml-2">Update Student Details</h1>
+                </div>
+                <p class="text-zinc-500">Search the student to update their information.</p>
+
+                <div class="mt-4">
+                    <label class="font-bold">Search Student</label>
+                    <input type="number" min="0" max="100" placeholder="Enter Roll No" class="w-18/20 border-2 mt-1 p-1"
+                        id="searchStudent" required>
+                    <button onclick="updateInfo()" class="fa-solid fa-magnifying-glass text-2xl ml-2"></button>
+                </div>
+                <div class="warning bg-danger p-2 text-white">
+                    <h1>Invalid Roll No Try Again</h1>
+                </div>
+                <div id="studentInfo" class="text-md mt-4 ">
+                    <h1 class="font-bold text-xl">Current Student Details:</h1>
+                    <div class="flex mt-3">
+                        <p class="font-bold w-1/2">Roll Number : <span id="rollNo" class="font-normal"></span></p>
+                        <p class="font-bold w-1/2">Name : <span id="name" class="font-normal"></span></p>
+                    </div>
+                    <div class="flex mt-2">
+                        <p class="font-bold w-1/2">Father Name : <span id="fName" class="font-normal"></span></p>
+                        <p class="font-bold w-1/2">DOB : <span id="dob" class="font-normal"></span></p>
+                    </div>
+                    <div class="flex mt-2">
+                        <p class="font-bold w-1/2">Gender : <span id="gender" class="font-normal"></span></p>
+                        <p class="font-bold w-1/2">Email : <span id="email" class="font-normal"></span></p>
+                    </div>
+                    <p class="font-bold w-1/2 mt-2">Address: <span id="address" class="font-normal"></span></p>
+                    <div class="flex mt-2">
+                        <p class="font-bold w-1/2">TotalMarks : <span id="totalMarks" class="font-normal"></span></p>
+                        <p class="font-bold w-1/2">Grade : <span id="grade" class="font-normal"></span></p>
+                    </div>
+                    <p class="font-bold w-1/2 mt-2">Percentage: <span id="Percentage" class="font-normal"></span></p>
+                    <h1 class="mt-4 font-bold text-lg">Subject Marks:</h1>
+                    <div class="flex justify-between mt-2">
+                        <p class="font-bold w-1/6 mt-2">Math: <span id="marks1" class="font-normal"></span></p>
+                        <p class="font-bold w-1/6 mt-2">Science: <span id="marks2" class="font-normal"></span></p>
+                        <p class="font-bold w-1/6 mt-2">English: <span id="marks3" class="font-normal"></span></p>
+                        <p class="font-bold w-1/6 mt-2">History: <span id="marks4" class="font-normal"></span></p>
+                        <p class="font-bold w-1/6 mt-2">Geography: <span id="marks5" class="font-normal"></span></p>
+                    </div>
+                </div>
+                <div class="float-right w-auto">
+                    <button onclick="document.querySelector(`#updateBox #studentInfo`).style.display=`none`"
+                        class=" p-2 px-4 rounded-full font-bold mt-5 border-1 ">Cancel</button>
+                    <button
+                        class="bg-orange-500 justify p-2 px-4 rounded-full text-white font-bold mt-5 updateBtn ">Update
+                        Student</button>
+                </div>
+            </div>
+            <div id="studentForm" class="justify-self-center w-7/10 mt-5 h-8/10 overflow-y-scroll p-3">
+                <div class=" flex">
+                    <i class="fa-solid fa-floppy-disk text-2xl"></i>
+                    <h1 class="text-2xl font-bold ml-2">Update Student Details</h1>
+                </div>
+                <p class="text-zinc-500">Update the student information below</p>
+
+                <div class="flex w-full justify-between mt-4">
+
+                    <div class="w-[48%]">
+                        <label class="font-bold">Roll Number</label><br>
+                        <input type="text" class="w-full border-2 mt-1 p-1" id="rollNo" required>
+                    </div>
+                    <div class="w-[48%]">
+                        <label class="font-bold">Student Name</label>
+                        <input type="text" class="w-full border-2 mt-1 p-1" id="name" required>
+                    </div>
+                </div>
+
+                <div class="flex w-full justify-between mt-4">
+
+                    <div class="w-[48%]">
+                        <label class="font-bold">Father Name</label><br>
+                        <input type="text" class="w-full border-2 mt-1 p-1" id="fName" required>
+                    </div>
+                    <div class="w-[48%]">
+                        <label class="font-bold">Date Of Birth</label>
+                        <input type="date" class="w-full border-2 mt-1 p-1" id="dob" required>
+                    </div>
+                </div>
+
+                <div class="flex w-full justify-between mt-4">
+
+                    <div class="w-[48%]">
+                        <label class="font-bold">Gender</label><br>
+                        <select class="w-full border-2 mt-1 p-1" name="" id="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="w-[48%]">
+                        <label class="font-bold">Email Address</label>
+                        <input type="email" class="w-full border-2 mt-1 p-1" id="email" required>
+                    </div>
+                </div>
+
+                <div class="w-full mt-4">
+
+                    <label class="font-bold">Address</label>
+                    <input type="type" class="w-full border-2 mt-1 p-1" id="address" required>
+
+                </div>
+
+                <div class="">
+                    <div class="flex mt-5">
+                        <i class="fa-solid fa-calculator text-2xl"></i>
+                        <h1 class="text-2xl font-bold ml-2">Subject Marks (out of 100 each)</h1>
+                    </div>
+                </div>
+                <div class="flex mt-3">
+                    <div>
+                        <label class="font-bold">Mathematics</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="math" required>
+                    </div>
+                    <div>
+                        <label class="font-bold">Science</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="science" required>
+                    </div>
+                    <div>
+                        <label class="font-bold">English</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="english" required>
+                    </div>
+                    <div>
+                        <label class="font-bold">History</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="history" required>
+                    </div>
+                    <div>
+                        <label class="font-bold">Geography</label>
+                        <input type="number" min="0" max="100" class="w-19/20 border-2 mt-1 p-1" id="geography"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="flex mt-4 justify-evenly">
+                    <div>
+                        <h1 class="text-2xl font-bold">Total Marks</h1>
+                        <h1 class="text-4xl font-bold text-orange-500 text-center"><span id="total"></span>/500</h1>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">Percentage</h1>
+                        <h1 class="text-4xl font-bold text-orange-500 text-center"><span id="percent"></span>%</h1>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">Grade</h1>
+                        <h1 class="text-4xl font-bold text-orange-500 text-center"><span id="Grade"></span></h1>
+                    </div>
+                </div>
+                <div class="float-right w-auto">
+                    <button class=" p-2 px-4 rounded-full font-bold mt-5 border-1 ">Cancel</button>
+                    <button onclick="updateDataFunction()"
+                        class="bg-orange-500 justify p-2 px-4 rounded-full text-white font-bold mt-5 .updateBtn ">Update
+                        Student</button>
+                </div>
+
+            </div>
+            
+
+        </div>
+        <div id="deleteBox" class="size-full">
+            <h1 class="font-bold text-5xl">Delete Student</h1>
+            <p class="text-zinc-500 text-lg mt-2">Remove a student record from the database permanently.</p>
+            <div id="searchBox" class="justify-self-center w-7/10 mt-4  border overflow-hidden p-3 max-h-9/10 ">
+                <div class=" flex text-red-600">
+                    <i class="fa-solid fa-trash text-2xl"></i>
+                    <h1 class="text-2xl font-bold ml-2">Delete Student Record</h1>
+                </div>
+                <p class="text-zinc-500">Permanently remove a student from the database. This action cannot be undone.
+                </p>
+
+                <div class="mt-4">
+                    <label class="font-bold">Search Student</label>
+                    <input type="number" min="0" max="100" placeholder="Enter Roll No" class="w-18/20 border-2 mt-1 p-1"
+                        id="searchStudent" required>
+                    <button onclick="deleteInfo()"
+                        class="fa-solid fa-magnifying-glass text-2xl ml-2 .deleteBtn"></button>
+                    <div class="warning bg-danger p-2 text-white">
+                        <h1>Invalid Roll No Try Again</h1>
+                    </div>
+                </div>
+
+                <div id="studentInfo" class="text-md mt-3 ">
+                    <h1 class="font-bold text-xl">Current Student Details:</h1>
+                    <div class="flex mt-2">
+                        <p class="font-bold w-1/2">Roll Number : <span id="rollNo" class="font-normal"></span></p>
+                        <p class="font-bold w-1/2">Name : <span id="name" class="font-normal"></span></p>
+                    </div>
+                    <div class="flex mt-1">
+                        <p class="font-bold w-1/2">Father Name : <span id="fName" class="font-normal"></span></p>
+                        <p class="font-bold w-1/2">DOB : <span id="dob" class="font-normal"></span></p>
+                    </div>
+                    <div class="flex mt-1">
+                        <p class="font-bold w-1/2">Gender : <span id="gender" class="font-normal"></span></p>
+                        <p class="font-bold w-1/2">Email : <span id="email" class="font-normal"></span></p>
+                    </div>
+                    <p class="font-bold w-1/2 mt-1">Address: <span id="address" class="font-normal"></span></p>
+                    <div class="flex mt-2">
+                        <p class="font-bold w-1/2">TotalMarks : <span id="totalMarks" class="font-normal"></span></p>
+                        <p class="font-bold w-1/2">Grade : <span id="grade" class="font-normal"></span></p>
+                    </div>
+                    <p class="font-bold w-1/2 mt-1">Percentage: <span id="Percentage" class="font-normal"></span></p>
+                    <h1 class="mt-4 font-bold text-lg">Subject Marks:</h1>
+                    <div class="flex justify-between mt-1">
+                        <p class="font-bold w-1/6 mt-1">Math: <span id="marks1" class="font-normal"></span></p>
+                        <p class="font-bold w-1/6 mt-1">Science: <span id="marks2" class="font-normal"></span></p>
+                        <p class="font-bold w-1/6 mt-1">English: <span id="marks3" class="font-normal"></span></p>
+                        <p class="font-bold w-1/6 mt-1">History: <span id="marks4" class="font-normal"></span></p>
+                        <p class="font-bold w-1/6 mt-1">Geography: <span id="marks5" class="font-normal"></span></p>
+                    </div>
+                </div>
+                <div class="float-right w-auto">
+                    <button onclick="deleteClose()"
+                        class=" p-2 px-4 rounded-full font-bold mt-5 border-1 ">Cancel</button>
+                    <button class="bg-red-600 justify p-2 px-4 rounded-full text-white font-bold mt-5 deleteBtn"
+                        onclick="DeleteStudent()">DeleteStudent</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
